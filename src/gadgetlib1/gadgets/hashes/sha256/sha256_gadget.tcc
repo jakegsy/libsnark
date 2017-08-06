@@ -228,7 +228,7 @@ size_t sha256_two_to_one_hash_gadget<FieldT>::expected_constraints(const bool en
 template<typename FieldT>
 sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &pb,
                                                                      const size_t block_length,
-                                                                     const block_variable<FieldT> &input_block,
+                                                                     const digest_variable<FieldT> &input_block,
                                                                      const digest_variable<FieldT> &output,
                                                                      const std::string &annotation_prefix)  :
     gadget<FieldT>(pb, annotation_prefix)
