@@ -253,7 +253,7 @@ void sha256_iterations_gadget<FieldT>::generate_r1cs_constraints(const bool ensu
 }
 
 template<typename FieldT>
-void sha256_iterations_hash_gadget<FieldT>::generate_r1cs_witness()
+void sha256_iterations_gadget<FieldT>::generate_r1cs_witness()
 {
     for(size_t i=0;i<iterations; i++){
         f[i]->generate_r1cs_witness();
