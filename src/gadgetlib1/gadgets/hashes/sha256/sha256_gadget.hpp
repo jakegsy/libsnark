@@ -105,7 +105,7 @@ public:
     typedef merkle_authentication_path merkle_authentication_path_type;
     static const size_t iterations = 1000;
 
-    sha256_compression_function_gadget<FieldT>[iterations] f;
+    sha256_compression_function_gadget<FieldT> [iterations] f;
 
     sha256_iterations_gadget(protoboard<FieldT> &pb,
                                   const size_t block_length,
