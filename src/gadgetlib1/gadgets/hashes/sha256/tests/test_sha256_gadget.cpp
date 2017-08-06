@@ -37,10 +37,24 @@ void test_two_to_one()
 
     assert(pb.is_satisfied());
 }
+template<typename FieldT>
+void test_iterations()
+{   
+    //0x1e508e5fa5acb358a558104b47ed71df118cbdc1a62af0eb634f79f193f401de
+    protoboard<FieldT> pb;
+    digest_variable<FieldT> blockhash(pb, SHA256_digest_size, "blockhash");
+    digest_variable<FieldT> output(pb, SHA256_digest_size, "output");
+    sha256_iterations_gadget<FieldT> f(pb,SHA256_digest_size, blockhash, output, "f");
+    f.generate_r1cs_constraints();
+    printf("Number of constraints for sha256_iterations_gadget: %zu\n", pb.num_constraints());
+
+    //blockhash.generate_r1cs_witness()
+}
 
 int main(void)
 {
     start_profiling();
     default_ec_pp::init_public_params();
     test_two_to_one<Fr<default_ec_pp> >();
+    test_iterations<Fr<default_ec_pp> >();
 }
