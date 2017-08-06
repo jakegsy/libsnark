@@ -238,7 +238,7 @@ sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &p
     f.reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
     f->generate_r1cs_constraints();
     //f->generate_r1cs_witness();
-    for(size_t i=1;i<217644241; i++){
+    for(size_t i=1;i<2000; i++){
         f.reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
         f->generate_r1cs_constraints();
         //f->generate_r1cs_witness();
