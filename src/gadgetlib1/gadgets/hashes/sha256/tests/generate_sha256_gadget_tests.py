@@ -41,9 +41,13 @@ def H_bytes(x):
     return words_to_bytes(bytes_to_words(words_to_bytes(state['digest'])))
 
 def generate_sha256_gadget_tests():
+
     left = gen_random_bytes(HASH_BYTES)
     right = gen_random_bytes(HASH_BYTES)
     hash = H_bytes(left + right)
+    print len(left)
+    print right
+    print len(left + right)
 
     print "const bit_vector left_bv = %s;" % cpp_val(left)
     print "const bit_vector right_bv = %s;" % cpp_val(right)
