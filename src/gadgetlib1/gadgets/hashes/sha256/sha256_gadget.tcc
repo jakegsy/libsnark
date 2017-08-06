@@ -235,12 +235,14 @@ sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &p
 {
     //assert(block_length == SHA256_block_size);
     assert(input_block.bits.size() == block_length);
-    printf("size of vector is %d\n",f.size());
-    f.push_back(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
-    for(size_t i=1;i<1000; i++){
-        f.push_back(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
+    f.reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
+    f->generate_r1cs_constraints();
+    f->generate_r1cs_witness();
+    for(size_t i=1;i<3; i++){
+        f.reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
+        f->generate_r1cs_constraints();
+        f->generate_r1cs_witness();
     }
-    printf("size of vector is %d\n",f.size());
 }
 
 template<typename FieldT>
