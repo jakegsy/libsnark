@@ -243,6 +243,36 @@ sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &p
 
 }
 
+template<typename FieldT>
+void sha256_iterations_gadget<FieldT>::generate_r1cs_constraints(const bool ensure_output_bitness)
+{
+    UNUSED(ensure_output_bitness);
+    for(size_t i=0;i<iterations; i++){
+        f[i]->generate_r1cs_constraints();
+    }
+}
+
+template<typename FieldT>
+void sha256_iterations_hash_gadget<FieldT>::generate_r1cs_witness()
+{
+    for(size_t i=0;i<iterations; i++){
+        f[i]->generate_r1cs_witness();
+    }
+}
+
+template<typename FieldT>
+size_t sha256_iterations_gadget<FieldT>::get_block_len()
+{
+    return SHA256_block_size;
+}
+
+template<typename FieldT>
+size_t sha256_iterations_gadget<FieldT>::get_digest_len()
+{
+    return SHA256_digest_size;
+}
+
+
 } // libsnark
 
 #endif // SHA256_GADGET_TCC_
