@@ -238,7 +238,7 @@ sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &p
     f.reset(new std::array<sha256_compression_function_gadget<FieldT>,iterations>);
     f[0].reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
     for(size_t i=1;i<iterations; i++){
-        f[i].reset(new sha256_compression_function_gadget<FieldT>(pb, output, output, output, FMT(this->annotation_prefix, " f")));
+        f[i].reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
     }
 
 }
