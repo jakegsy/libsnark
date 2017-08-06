@@ -105,8 +105,8 @@ public:
     typedef merkle_authentication_path merkle_authentication_path_type;
     static const size_t iterations = 1000;
 
-    std::shared_ptr< std::vector<sha256_compression_function_gadget<FieldT>> > f;
-
+    std::vector<sha256_compression_function_gadget<FieldT>> holding_pen;
+    
     sha256_iterations_gadget(protoboard<FieldT> &pb,
                                   const size_t block_length,
                                   const digest_variable<FieldT> &input_block,
