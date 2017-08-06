@@ -109,7 +109,7 @@ public:
 
     sha256_iterations_gadget(protoboard<FieldT> &pb,
                                   const size_t block_length,
-                                  const block_variable<FieldT> &input_block,
+                                  const digest_variable<FieldT> &input_block,
                                   const digest_variable<FieldT> &output,
                                   const std::string &annotation_prefix);
 
