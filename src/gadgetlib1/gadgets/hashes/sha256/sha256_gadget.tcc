@@ -235,11 +235,10 @@ sha256_iterations_gadget<FieldT>::sha256_iterations_gadget(protoboard<FieldT> &p
 {
     assert(block_length == SHA256_block_size);
     assert(input_block.bits.size() == block_length);
-    f[0].reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
+    f.push_back(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), input_block.bits, output, FMT(this->annotation_prefix, " f")));
     for(size_t i=1;i<iterations; i++){
-        f[i].reset(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
+        f.push_back(new sha256_compression_function_gadget<FieldT>(pb, SHA256_default_IV<FieldT>(pb), output.bits, output, FMT(this->annotation_prefix, " f")));
     }
-
 }
 
 template<typename FieldT>
