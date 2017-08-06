@@ -45,7 +45,7 @@ void test_iterations()
     digest_variable<FieldT> blockhash(pb, SHA256_digest_size, "blockhash");
     digest_variable<FieldT> output(pb, SHA256_digest_size, "output");
     sha256_iterations_gadget<FieldT> f(pb, SHA256_digest_size, blockhash, output, "f");
-    f.generate_r1cs_constraints();
+    //f.generate_r1cs_constraints();
     printf("Number of constraints for sha256_iterations_gadget: %zu\n", pb.num_constraints());
 
     //blockhash.generate_r1cs_witness()
